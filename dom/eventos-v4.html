@@ -1,0 +1,66 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ contador }}</p>
+    <!-- Passando somente o parametro para o método e capturando o evento onclick -->
+    <button v-on:click="somar(5)">Somar 1</button>
+
+    <!-- Passando o parametro e o evento para o método, é necessário usar o $event para passar -->
+    <button v-on:click="somarEvent(5, $event)">Somar 1</button>
+
+    <!-- Exemplo de capturar o evento mousemove -->
+    <p v-on:mousemove="atualizarXY"> Mouse: {{ x }} e {{ y }}</p>
+
+    <!-- Exemplo de modificar o evento, o evento para quando chega no span parar-->
+    <p v-on:mousemove="atualizarXY"> Mouse: {{ x }} e {{ y }}
+        <span v-on:mousemove="parar"> Parar aqui! </span>
+    </p>
+
+    <!-- Exemplo de modificar o evento, o evento para quando chega no span parar, mas sem passar uma função
+    que faça isso, pedindo pro evento parar diretamente
+    -->
+    <p v-on:mousemove="atualizarXY"> Mouse: {{ x }} e {{ y }}
+        <span v-on:mousemove.stop=""> Parar aqui! </span>
+    </p>
+
+     <!-- Prever o comportamento default de um evento, o .prevent previne o comportamento padrao do evento, 
+        nesse caso quando
+        o usuario clicar, ele não vai para o Google
+    -->
+    <a v-on:click.prevent href="http://google.com">Google</a>
+
+     <!-- Tem como usar o .stop.prevent juntos, ele para a propagação do evento e também previne o 
+        comportamento padrao do evento
+    -->
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            somar(valorAhAcresentar) {
+                this.contador += valorAhAcresentar
+            },
+            somarEvent(valorAhAcresentar, e) {
+                // imprimir o valor e o evento somente para exemplo
+                console.log(valorAhAcresentar, e)
+                this.contador += valorAhAcresentar
+            },
+            parar(e) {
+                e.stopPropagation()
+            },
+            //as váriaveis x e y vão receber o número de vezes que esse evento é disparado, nós precisamos passar
+            //o evento (event ou somente e) para poder capturar esse valor, no caso acima, não foi necessário, pois o Vue já cria
+            //o evento sem precisar passar ele, se o objetivo for somente usar o evento, não precisa passar o evento
+            atualizarXY(event) {
+                this.x = event.clientX
+                this.y = event.clientY
+            }
+        }
+    })
+</script>
