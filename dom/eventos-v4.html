@@ -32,6 +32,11 @@
      <!-- Tem como usar o .stop.prevent juntos, ele para a propagação do evento e também previne o 
         comportamento padrao do evento
     -->
+
+    <!-- Eventos de teclado, toda vez que clicar enter, ele exibe o alerta, se olocar .enter.alt, 
+        será quando clicar em duas teclas
+    -->
+    <input type="text" v-on:keyup.enter="exibirAlerta">
 </div>
 
 <script>
@@ -60,6 +65,9 @@
             atualizarXY(event) {
                 this.x = event.clientX
                 this.y = event.clientY
+            },
+            exibirAlerta(){
+                alert('Alerta!')
             }
         }
     })
