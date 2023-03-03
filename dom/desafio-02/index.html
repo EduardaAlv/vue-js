@@ -6,17 +6,24 @@
         <button v-on:click="exibirAlerta">Exibir Alerta</button>
     </div>
     
-    <!-- 2) Escute o evento "keydown" e armazene o valor na propriedade
-        data (dica: event.target.value) -->
+    <!-- 2) Escute o evento "keyup" e armazene o valor na propriedade
+        data (dica: event.target.value) USANDO FUNÇÃO-->
     <div>
-        <input v-on:keydown="armazeneValor" type="text">
+        <input v-on:keyup="armazeneValor" type="text">
         <p>{{ valor }}</p>
     </div>
+
+        <!-- 2) Escute o evento "keydown" e armazene o valor na propriedade
+        data (dica: event.target.value) FAZENDO DIRETAMENTE pelo $event-->
+        <div>
+            <input v-on:keydown="valor = $event.target.value" type="text">
+            <p>{{ valor }}</p>
+        </div>
     
     <!-- 3) Ajuste o exemplo 2 para disparar o evento "keydown" somente
         quando a tecla for ENTER -->
     <div>
-        <input type="text">
+        <input v-on:keydown.enter="valor = $event.target.value" type="text">
         <p>{{ valor }}</p>
     </div>
 </div>
