@@ -20,6 +20,16 @@ o contador2 não vai ser somado, pois foi o contador que chamou o aumentar, não
             contador: 0,
             contador2: 0
         },
+        //o watch "assiste" as propriedades verificando se houveram mudanças, o nome da propriedade
+        //do data deve ser exatamente igual ao método que você colocar dentro do watch, para "asistir" ele
+        //então, você recebera o valor novo e o antigo da propriedade
+        watch: {
+            contador(novo, antigo){
+                setTimeout(() => {
+                    this.contador = 0
+                }, 2000)
+            }
+        },
         computed:{
             resultado(){
                 console.log('método computado chamado...')
