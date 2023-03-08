@@ -1,0 +1,58 @@
+<script src="https://unpkg.com/vue@2"></script>
+
+<style>
+    .caixas {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .c1 {
+        background-color: red;
+    }
+
+    .c2 {
+        background-color: rgb(36, 238, 36);
+    }
+
+    .c3 {
+        background-color: blue;
+    }
+    .girar{
+        transform: rotate(45deg);
+    }
+</style>
+<div id="app">
+
+    <!--Nesse exemplo, está sendo setada dinamicamente o estilo css na div, 
+    que está sendo setado na propriedade claseCSS, também, o input está recebendo
+    o texto e setando na propriedade classeCSS, permitindo que o usuário escolha a classe que deseja-->
+    <div class="caixas">
+        <div class="demo"></div>
+        <div class="demo"></div>
+        <div class="demo" :class="claseCSS"></div>
+<!-- também tem como colocar mais de uma classe em uma div
+essa está recebendo a classe que está dentro da propriedade claseCSS, e também recebe diretamente 
+a classe .girar, com '' pois é uma classe do css
+-->
+        <div class="demo" :class="[claseCSS, 'girar']"></div>
+    </div>
+    <hr>
+    <input type="text" v-model="claseCSS">
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            aplicarC1: false,
+            claseCSS: 'c1'
+        }
+    })
+</script>
