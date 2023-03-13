@@ -1,0 +1,32 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue@2"></script>
+
+<div id="app">
+    <!-- nesse caso
+    ao clicar no button, a propriedade logado recebe o contrário dela, o que faz o logado ficar alternando
+    entre true e false, então O v-if é utilizado para colocar uma condição no template,
+    a primeira tag p Usuário Logado: {{ nome }} só vai aparecer quando a propriedade logado estiver true,
+    a segunda tag p Nenhum usuário logado só vai aparecer quando a propriedade logado estiver false
+    -->
+    <p v-if="logado" >Usuário Logado: {{ nome }}</p>
+    <p v-if="!logado" >Nenhum usuário logado</p>
+
+    
+<!--Tem até outro jeito sem ser a negação do logado (!logado), é só utilizar o v-else 
+    O v-else precisa ser usado sempre após um v-if ser usado
+-->
+    <p v-if="logado" >Usuário Logado: {{ nome }}</p>
+    <p v-else>Nenhum usuário logado</p>
+    <button @click="logado = !logado">
+        {{ logado ? 'Sair' : 'Entrar' }}</button>
+</div>
+
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        nome: 'Maria',
+        logado: false
+    }
+})
+</script>

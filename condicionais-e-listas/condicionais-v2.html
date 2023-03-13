@@ -1,0 +1,30 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue@2"></script>
+
+<div id="app">
+    <!-- nesse caso
+    ao clicar no button, a propriedade logado recebe o contrário dela, o que faz o logado ficar alternando
+    entre true e false, então O v-if é utilizado para colocar uma condição no template,
+    a primeira tag p Usuário Logado: {{ nome }} só vai aparecer quando a propriedade logado estiver true,
+    a segunda tag p v-else-if só vai aparecer quando a propriedade anonimo estiver true
+    e a ultima v-else, é se nenhuma das duas primeiras atender a condição de estar true
+    -->
+    <p v-if="logado" >Usuário Logado: {{ nome }}</p>
+    <p v-else-if="anonimo">Navegando como anonimo</p>
+    <p v-else>Nenhum usuário logado</p>
+    <button @click="logado = !logado">
+        {{ logado ? 'Sair' : 'Entrar' }}</button>
+
+    <input type="checkbox" v-model="anonimo">
+</div>
+
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        nome: 'Maria',
+        logado: false,
+        anonimo: true
+    }
+})
+</script>
